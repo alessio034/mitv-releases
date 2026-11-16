@@ -1,0 +1,85 @@
+{
+  "destacados": ["sintel", "cosmos-laundromat", "tears-of-steel"],
+  "filas": [
+    {
+      "titulo": "Estrenos de Mi TV",
+      "pestana": "recomendado",
+      "titulos": [
+        {
+          "id": "sintel",
+          "titulo": "Sintel",
+          "anio": "2010",
+          "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sintel_poster.jpg/500px-Sintel_poster.jpg",
+          "sinopsis": "Una joven guerrera recorre tierras peligrosas buscando a Scales, el pequeño dragón que crió y que le arrebataron. Película abierta de la Blender Foundation (licencia CC BY 3.0).",
+          "video": "https://archive.org/download/Sintel/sintel-2048-stereo_512kb.mp4",
+          "duracion": 888
+        },
+        {
+          "id": "cosmos-laundromat",
+          "titulo": "Cosmos Laundromat",
+          "anio": "2015",
+          "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/CosmosLaundromatPoster.jpg/500px-CosmosLaundromatPoster.jpg",
+          "sinopsis": "En una isla desolada, Franck, una oveja harta de todo, conoce a un extraño vendedor que le ofrece el regalo de su vida. Blender Foundation (CC BY 4.0).",
+          "video": "https://archive.org/download/CosmosLaundromatFirstCycle/Cosmos%20Laundromat%20-%20First%20Cycle%20%281080p%29.mp4",
+          "duracion": 730
+        },
+        {
+          "id": "tears-of-steel",
+          "titulo": "Tears of Steel",
+          "anio": "2012",
+          "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tos-poster.png/500px-Tos-poster.png",
+          "sinopsis": "En una Ámsterdam del futuro, un grupo de científicos intenta salvar al mundo de unos robots recreando el momento en que una pareja se separó. Blender Foundation (CC BY 3.0).",
+          "video": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
+          "duracion": 734
+        },
+        {
+          "id": "elephants-dream",
+          "titulo": "Elephants Dream",
+          "anio": "2006",
+          "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/500px-ElephantsDreamPoster.jpg",
+          "sinopsis": "Dos personajes exploran una máquina gigantesca y caprichosa que solo uno de ellos cree entender. La primera película abierta de Blender (CC BY 3.0).",
+          "video": "https://archive.org/download/ElephantsDream/ed_hd.mp4",
+          "duracion": 654
+        }
+      ]
+    },
+    {
+      "titulo": "Anime clásico (dominio público)",
+      "pestana": "anime",
+      "titulos": [
+        {
+          "archive": "momotaro-1918",
+          "titulo": "Momotarō (1918)",
+          "anio": "1918"
+        }
+      ]
+    },
+    {
+      "titulo": "Caricaturas libres",
+      "pestana": "infantil",
+      "titulos": [
+        {
+          "id": "big-buck-bunny",
+          "titulo": "Big Buck Bunny",
+          "anio": "2008",
+          "poster": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/500px-Big_buck_bunny_poster_big.jpg",
+          "sinopsis": "Un conejo grandote y bonachón decide vengarse de tres roedores que no dejan de molestarlo. Blender Foundation (CC BY 3.0).",
+          "video": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
+          "duracion": 597
+        },
+        {
+          "id": "caminandes",
+          "titulo": "Caminandes",
+          "anio": "2013",
+          "poster": "https://archive.org/services/img/Caminandes2GranDillama",
+          "sinopsis": "Las aventuras de Koro, una llama de la Patagonia que siempre se mete en problemas. Serie corta de Blender (CC BY 3.0).",
+          "episodios": [
+            { "titulo": "1. Llama Drama", "video": "https://archive.org/download/Caminandes1LlamaDrama/01_llama_drama_1080p.mp4", "duracion": 90 },
+            { "titulo": "2. Gran Dillama", "video": "https://archive.org/download/Caminandes2GranDillama/02_gran_dillama_1080p.mp4", "duracion": 146 },
+            { "titulo": "3. Llamigos", "video": "https://archive.org/download/CaminandesLlamigos/Caminandes_%20Llamigos-1080p.mp4", "duracion": 150 }
+          ]
+        }
+      ]
+    }
+  ]
+}
