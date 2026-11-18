@@ -10,8 +10,9 @@
 </p>
 
 <h3 align="center">
-  <a href="https://github.com/alessio034/mitv-releases/releases/latest">⬇️ Descargar la última versión</a>
+  <a href="https://github.com/alessio034/mitv-releases/releases/latest/download/mitv.apk">⬇️ Descargar Mi TV (APK)</a>
 </h3>
+<p align="center"><sub>Enlace fijo: siempre baja la última versión · <a href="https://github.com/alessio034/mitv-releases/releases">ver todas las versiones</a></sub></p>
 
 **Mi TV** es una app para Android, Android TV y Fire TV que junta en un solo lugar miles de canales en vivo
 gratuitos, películas y series de dominio público, y una guía para saber **dónde ver** cualquier película,
@@ -79,8 +80,7 @@ Sin cuentas, sin suscripciones y solo con contenido legal.
 ## Cómo instalarla
 
 ### En el celular o la tablet
-1. Entra a [**la última versión**](https://github.com/alessio034/mitv-releases/releases/latest) y descarga el
-   archivo **`mitv-X.Y.apk`** (en *Assets*).
+1. Desde el celular, abre este enlace: [**descargar Mi TV**](https://github.com/alessio034/mitv-releases/releases/latest/download/mitv.apk).
 2. Ábrelo. Si Android pregunta, permite **"Instalar apps desconocidas"** para tu navegador.
 3. Toca **Instalar** y listo.
 
@@ -90,9 +90,11 @@ Sin cuentas, sin suscripciones y solo con contenido legal.
 1. En la tienda de Amazon instala la app **Downloader**.
 2. En el Fire TV ve a **Configuración → Mi Fire TV → Opciones para desarrolladores →
    Instalar apps desconocidas** y activa **Downloader**.
-3. Abre Downloader y escribe la dirección de descarga del APK
-   (en [la última versión](https://github.com/alessio034/mitv-releases/releases/latest), mantén presionado
-   el archivo `.apk` y copia el enlace).
+3. Abre Downloader y escribe esta dirección (siempre baja la última versión):
+
+   ```
+   https://github.com/alessio034/mitv-releases/releases/latest/download/mitv.apk
+   ```
 4. Instala. Mi TV se abre en modo TV: se maneja con las flechas y OK del control.
 
 ### En Android TV / Google TV / TV box
