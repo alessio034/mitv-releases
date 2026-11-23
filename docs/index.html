@@ -51,7 +51,7 @@
     display: inline-flex; align-items: center; gap: 10px;
     background: var(--red); color: #fff; text-decoration: none; font-weight: 700;
     padding: 14px 26px; border-radius: 999px; font-size: 17px;
-    transition: background .15s, transform .15s;
+    transition: background .15s, transform .15s; white-space: nowrap;
   }
   .btn:hover { background: var(--red2); transform: translateY(-1px); }
   .btn.small { padding: 8px 18px; font-size: 15px; }
@@ -144,7 +144,9 @@
 
   @media (max-width: 860px) {
     nav.links { display: none; }
-    .top .btn.small { margin-left: auto; }
+    .top .btn.web { margin-left: auto; }
+    .top .wrap { gap: 10px; }
+    .top .btn.small { padding: 7px 14px; font-size: 14px; }
     .hero { padding-top: 40px; }
     .hero .wrap { grid-template-columns: 1fr; }
     .phones { height: 380px; }
@@ -176,6 +178,7 @@
       <a href="#instalar">Instalar</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
+    <a class="btn small ghost web" href="https://alessio034.github.io/iptv-web/" target="_blank" rel="noopener">Versión web</a>
     <a class="btn small" href="https://github.com/alessio034/mitv-releases/releases/latest/download/mitv.apk">Descargar</a>
   </div>
 </header>
@@ -193,6 +196,8 @@
         </a>
         <a class="btn ghost" href="#instalar">Cómo instalarla</a>
       </div>
+      <p class="ver">¿Sin Android? Mira la TV en vivo desde el navegador con la
+        <a href="https://alessio034.github.io/iptv-web/" target="_blank" rel="noopener">versión web</a>.</p>
       <div class="ver" id="ver">Android 6.0 o superior · APK de ~13 MB</div>
       <div class="badges">
         <span class="badge">Celular y tablet</span>
