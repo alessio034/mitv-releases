@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi TV · TV en vivo, películas y series gratis y legal</title>
+<meta name="description" content="Mi TV: app gratis para Android, Android TV y Fire TV con miles de canales en vivo, películas y series de dominio público y dónde ver cualquier título en tus servicios.">
+<meta name="theme-color" content="#15141c">
+<meta property="og:title" content="Mi TV">
+<meta property="og:description" content="TV en vivo, películas y series. Gratis y legal. Para Android, Android TV y Fire TV.">
+<meta property="og:image" content="https://alessio034.github.io/mitv-releases/capturas/encabezado.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff4d5a'/%3E%3Cpath d='M25 19v26l21-13z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #15141c;
+    --bg2: #1c1b25;
+    --card: #22212d;
+    --line: #2f2e3c;
+    --text: #f3f2f7;
+    --muted: #a9a8b8;
+    --red: #ff4d5a;
+    --red2: #ff6b76;
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--red2); }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* Barra superior */
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(21,20,28,.85); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { display: flex; align-items: center; gap: 24px; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 22px; }
+  .logo b { color: var(--red); }
+  .logo svg { width: 34px; height: 34px; }
+  nav.links { display: flex; gap: 22px; margin-left: auto; }
+  nav.links a { color: var(--muted); text-decoration: none; font-size: 15px; }
+  nav.links a:hover { color: var(--text); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red); color: #fff; text-decoration: none; font-weight: 700;
+    padding: 14px 26px; border-radius: 999px; font-size: 17px;
+    transition: background .15s, transform .15s;
+  }
+  .btn:hover { background: var(--red2); transform: translateY(-1px); }
+  .btn.small { padding: 8px 18px; font-size: 15px; }
+  .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+  .btn.ghost:hover { border-color: var(--muted); background: transparent; }
+  .btn svg { width: 20px; height: 20px; }
+
+  /* Portada */
+  .hero { padding: 64px 0 40px; background: radial-gradient(1000px 500px at 80% 0%, rgba(255,77,90,.14), transparent 60%); }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .hero h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.1; margin: 0 0 18px; letter-spacing: -.02em; }
+  .hero h1 span { color: var(--red); }
+  .hero p.lead { color: var(--muted); font-size: 19px; margin: 0 0 28px; max-width: 34em; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .ver { color: var(--muted); font-size: 14px; margin-top: 14px; }
+  .ver strong { color: var(--text); }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .badge { font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; }
+  .phones { position: relative; height: 520px; }
+  .phones img {
+    position: absolute; width: 230px; border-radius: 26px;
+    border: 6px solid #0c0b11; box-shadow: 0 30px 60px rgba(0,0,0,.5);
+  }
+  .phones img:nth-child(1) { right: 150px; top: 30px; transform: rotate(-5deg); }
+  .phones img:nth-child(2) { right: 0; top: 0; transform: rotate(4deg); }
+
+  section { padding: 64px 0; }
+  section.alt { background: var(--bg2); }
+  h2 { font-size: clamp(26px, 3.4vw, 36px); margin: 0 0 10px; letter-spacing: -.01em; }
+  .sub { color: var(--muted); margin: 0 0 36px; max-width: 42em; }
+
+  /* Funciones */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .card .ic { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,77,90,.14); display: grid; place-items: center; margin-bottom: 14px; }
+  .card .ic svg { width: 24px; height: 24px; stroke: var(--red); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .card h3 { margin: 0 0 8px; font-size: 19px; }
+  .card ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+  .card li { margin: 4px 0; }
+  .card li b { color: var(--text); font-weight: 600; }
+
+  /* Capturas */
+  .shots { display: flex; gap: 18px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; }
+  .shots figure { margin: 0; flex: 0 0 220px; scroll-snap-align: start; }
+  .shots img { border-radius: 20px; border: 1px solid var(--line); }
+  .shots figcaption, .tvshot figcaption { color: var(--muted); font-size: 14px; text-align: center; margin-top: 8px; }
+  .tvshot { margin: 28px 0 0; }
+  .tvshot img { border-radius: 14px; border: 1px solid var(--line); width: 100%; }
+
+  /* Instalar */
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 42px; margin: 14px 0; color: var(--muted); }
+  .steps li b { color: var(--text); }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: 0;
+    width: 28px; height: 28px; border-radius: 50%; background: var(--red); color: #fff;
+    font-weight: 700; font-size: 14px; display: grid; place-items: center;
+  }
+  .url {
+    display: flex; align-items: center; gap: 8px; margin-top: 8px;
+    background: #0f0e15; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+    font: 15px/1.4 ui-monospace, Consolas, monospace; color: var(--text); word-break: break-all;
+  }
+  .url button {
+    margin-left: auto; flex: none; background: var(--card); color: var(--text);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; cursor: pointer; font-size: 13px;
+  }
+  .url button:hover { border-color: var(--muted); }
+  .note { color: var(--muted); font-size: 14px; margin-top: 14px; }
+
+  /* Novedades */
+  .news { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 26px; }
+  .news .tag { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 13px; border-radius: 999px; padding: 2px 12px; margin-right: 10px; }
+  .news .date { color: var(--muted); font-size: 14px; }
+  .news .body { color: var(--muted); margin-top: 12px; white-space: pre-line; }
+
+  /* Preguntas */
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 0 20px; margin-bottom: 12px; }
+  summary { cursor: pointer; padding: 16px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--red); font-size: 22px; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details .a { color: var(--muted); padding-bottom: 16px; }
+  details .a ul { padding-left: 18px; margin: 0; }
+
+  footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--muted); font-size: 14px; }
+  footer .cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; }
+  footer ul { padding-left: 18px; margin: 6px 0; }
+  footer h4 { color: var(--text); margin: 0 0 6px; font-size: 15px; }
+
+  @media (max-width: 860px) {
+    nav.links { display: none; }
+    .top .btn.small { margin-left: auto; }
+    .hero { padding-top: 40px; }
+    .hero .wrap { grid-template-columns: 1fr; }
+    .phones { height: 380px; }
+    .phones img { width: 170px; }
+    .phones img:nth-child(1) { right: auto; left: calc(50% - 175px); }
+    .phones img:nth-child(2) { right: auto; left: calc(50% - 5px); }
+    footer .cols { grid-template-columns: 1fr; }
+    section { padding: 48px 0; }
+  }
+  @media (max-width: 420px) {
+    .wrap { padding: 0 16px; }
+    .phones img:nth-child(1) { left: calc(50% - 160px); }
+    .phones img:nth-child(2) { left: calc(50% - 10px); }
+    .btn { padding: 13px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#ff4d5a"/><path d="M25 19v26l21-13z" fill="#fff"/></svg>
+      Mi <b>TV</b>
+    </a>
+    <nav class="links">
+      <a href="#funciones">Funciones</a>
+      <a href="#capturas">Capturas</a>
+      <a href="#instalar">Instalar</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="btn small" href="https://github.com/alessio034/mitv-releases/releases/latest/download/mitv.apk">Descargar</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>TV en vivo, películas y series. <span>Gratis y legal.</span></h1>
+      <p class="lead">Miles de canales gratuitos, clásicos de dominio público y una guía para saber dónde ver
+        cualquier película, serie o anime en los servicios que ya pagas. Sin cuentas ni suscripciones.</p>
+      <div class="cta">
+        <a class="btn" href="https://github.com/alessio034/mitv-releases/releases/latest/download/mitv.apk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg>
+          Descargar Mi TV
+        </a>
+        <a class="btn ghost" href="#instalar">Cómo instalarla</a>
+      </div>
+      <div class="ver" id="ver">Android 6.0 o superior · APK de ~13 MB</div>
+      <div class="badges">
+        <span class="badge">Celular y tablet</span>
+        <span class="badge">Android TV</span>
+        <span class="badge">Fire TV</span>
+        <span class="badge">Sin anuncios propios</span>
+      </div>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <img src="capturas/en-vivo.png" alt="">
+      <img src="capturas/inicio.png" alt="">
+    </div>
+  </div>
+</div>
+
+<section id="funciones" class="alt">
+  <div class="wrap">
+    <h2>Todo lo que tiene</h2>
+    <p class="sub">Una sola app para la TV en vivo, las películas y series libres y lo que ya ves en tus servicios.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="m8 2 4 4 4-4"/></svg></div>
+        <h3>TV en vivo</h3>
+        <ul>
+          <li><b>Miles de canales gratis</b> por país, "Todo en español", noticias, música e infantiles.</li>
+          <li><b>Pluto TV</b> de México, España y EE. UU.: anime, películas, novelas…</li>
+          <li>Buscador, <b>favoritos</b> y guía de qué dan ahora y qué sigue.</li>
+          <li>Calidad a elección y ahorro de datos móviles. Tu propia lista M3U.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 8h4M3 16h4M17 8h4M17 16h4"/></svg></div>
+        <h3>Películas y series</h3>
+        <ul>
+          <li>Clásicos de <b>dominio público</b>: cine negro, westerns, terror, ciencia ficción, caricaturas.</li>
+          <li><b>Estrenos de Mi TV</b>: películas libres como <i>Sintel</i> o <i>Tears of Steel</i>.</li>
+          <li><b>Seguir viendo</b> y siguiente episodio automático.</li>
+          <li>Tu servidor <b>Jellyfin</b> y los videos del equipo.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></div>
+        <h3>Dónde verlo</h3>
+        <ul>
+          <li>Busca <b>cualquier película, serie o anime</b> y te dice en qué servicio está en tu país.</li>
+          <li>Marca <b>Mis servicios</b> y lo que ya pagas sale primero.</li>
+          <li><b>Abrir</b> te lleva directo al título en Crunchyroll, Netflix, Prime Video o Disney+.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M2 16a6 6 0 0 1 6 6M2 12a10 10 0 0 1 10 10M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/></svg></div>
+        <h3>Transmitir a la TV</h3>
+        <ul>
+          <li><b>Chromecast</b>, Smart TVs <b>Samsung y LG</b> y <b>Roku</b>.</li>
+          <li>Cualquier pantalla Android con Mi TV abierta (TV box, Fire TV, proyector).</li>
+          <li>La TV descarga el canal sola: el celular puede apagar la pantalla.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capturas">
+  <div class="wrap">
+    <h2>Así se ve</h2>
+    <p class="sub">Diseño oscuro pensado para celular, tablet y pantalla grande.</p>
+    <div class="shots">
+      <figure><img src="capturas/inicio.png" alt="Inicio con el carrusel de destacados" loading="lazy"><figcaption>Inicio</figcaption></figure>
+      <figure><img src="capturas/ficha.png" alt="Ficha de una serie con sus episodios" loading="lazy"><figcaption>Ficha con episodios</figcaption></figure>
+      <figure><img src="capturas/en-vivo.png" alt="TV en vivo con la lista de canales" loading="lazy"><figcaption>TV en vivo</figcaption></figure>
+      <figure><img src="capturas/transmitir.png" alt="Transmitir a la TV" loading="lazy"><figcaption>Transmitir a la TV</figcaption></figure>
+    </div>
+    <figure class="tvshot">
+      <img src="capturas/tv.png" alt="Mi TV en una pantalla grande (Fire TV / Android TV)" loading="lazy">
+      <figcaption>En Fire TV y Android TV se maneja con el control remoto.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="instalar" class="alt">
+  <div class="wrap">
+    <h2>Cómo instalarla</h2>
+    <p class="sub">No está en las tiendas: se instala desde aquí y después se actualiza sola.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Celular o tablet</h3>
+        <ol class="steps">
+          <li>Desde el celular toca <a href="https://github.com/alessio034/mitv-releases/releases/latest/download/mitv.apk"><b>Descargar Mi TV</b></a>.</li>
+          <li>Abre el archivo. Si Android pregunta, permite <b>Instalar apps desconocidas</b> para tu navegador.</li>
+          <li>Toca <b>Instalar</b> y listo.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Fire TV / Fire Stick</h3>
+        <ol class="steps">
+          <li>Instala la app <b>Downloader</b> desde la tienda de Amazon.</li>
+          <li>En <b>Configuración → Mi Fire TV → Opciones para desarrolladores → Instalar apps desconocidas</b>, activa Downloader.</li>
+          <li>En Downloader escribe esta dirección:
+            <div class="url"><span id="fireUrl">alessio034.github.io/mitv-releases</span><button data-copy="fireUrl">Copiar</button></div>
+            y pulsa <b>Descargar Mi TV</b> en la página.</li>
+          <li>Instala. Mi TV se abre en modo TV: se usa con las flechas y OK.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Android TV / TV box</h3>
+        <ol class="steps">
+          <li>Igual que en Fire TV, con <b>Downloader</b> o desde una memoria USB.</li>
+          <li>O instálala solo en el celular y usa <b>Transmitir</b> para mandar los canales a la TV.</li>
+        </ol>
+        <p class="note">Enlace directo al APK (siempre la última versión):</p>
+        <div class="url"><span id="apkUrl">github.com/alessio034/mitv-releases/releases/latest/download/mitv.apk</span><button data-copy="apkUrl">Copiar</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="novedades">
+  <div class="wrap">
+    <h2>Novedades</h2>
+    <div class="news" id="news">
+      <span class="tag" id="newsTag">Última versión</span><span class="date" id="newsDate"></span>
+      <div class="body" id="newsBody">Las notas de la versión aparecen aquí.</div>
+    </div>
+    <p class="note"><a href="https://github.com/alessio034/mitv-releases/releases">Ver todas las versiones →</a></p>
+  </div>
+</section>
+
+<section id="preguntas" class="alt">
+  <div class="wrap">
+    <h2>Preguntas frecuentes</h2>
+    <p class="sub">&nbsp;</p>
+    <details>
+      <summary>¿Es legal?</summary>
+      <div class="a">Sí. Mi TV solo muestra contenido que se puede ver gratis legalmente: canales en abierto de las listas
+        públicas de <a href="https://github.com/iptv-org/iptv">iptv-org</a>, los canales gratuitos de Pluto TV (con sus
+        anuncios), películas y series de <b>dominio público</b> o con licencia <b>Creative Commons</b>, y tus propios videos.
+        Lo que es de pago se ve en la app oficial de cada servicio: Mi TV solo te dice dónde está y te lleva ahí.</div>
+    </details>
+    <details>
+      <summary>¿Por qué no puedo ver Crunchyroll o Netflix dentro de Mi TV?</summary>
+      <div class="a">Sus videos están protegidos y solo se reproducen en sus apps oficiales, aunque tengas la suscripción.
+        Mi TV te muestra el título y con <b>Abrir</b> te lleva directo a él en la app del servicio.</div>
+    </details>
+    <details>
+      <summary>¿Es segura? Android dice que es de "origen desconocido"</summary>
+      <div class="a">Android lo dice de cualquier app que no venga de una tienda. Descárgala solo desde esta página o desde
+        <a href="https://github.com/alessio034/mitv-releases/releases">las versiones en GitHub</a>: todas van firmadas con la
+        misma clave, y por eso las actualizaciones se instalan encima sin perder nada.</div>
+    </details>
+    <details>
+      <summary>Un canal no carga</summary>
+      <div class="a">Los canales gratuitos a veces cambian o dejan de transmitir. Prueba otro canal o cambia la lista en
+        <b>Ajustes</b>. Las listas se actualizan solas.</div>
+    </details>
+    <details>
+      <summary>No aparece mi TV al transmitir</summary>
+      <div class="a"><ul>
+        <li>El celular y la TV deben estar en la <b>misma red Wi-Fi</b> (no en la de invitados).</li>
+        <li>Pantalla Android sin Chromecast: abre <b>Mi TV en la pantalla</b>. Si no aparece sola, en la pantalla ve a
+          <b>Ajustes → Recibir transmisiones</b>, mira su IP y en el celular usa <b>Conectar por IP…</b></li>
+        <li>Samsung: activa "Dispositivos conectados". LG: "Compartir pantalla" / DLNA.</li>
+        <li>Roku: Configuración → Sistema → Configuración avanzada → <b>Control por apps móviles</b>.</li>
+      </ul></div>
+    </details>
+    <details id="privacidad">
+      <summary>¿Qué datos usa la app? (privacidad)</summary>
+      <div class="a">Mi TV no tiene cuentas ni guarda tus datos en ningún servidor propio. Tus favoritos, "Seguir viendo" y
+        ajustes quedan solo en tu equipo. La app consulta GitHub (actualizaciones y catálogo), las listas de canales,
+        Internet Archive, TMDB y Wikidata para mostrar la información, y cada canal se descarga directo desde quien lo transmite.</div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <h4>Mi TV</h4>
+      Mi TV no aloja ningún video. Los canales y marcas que aparecen pertenecen a sus dueños.
+      <br><a href="https://github.com/alessio034/mitv-releases">Proyecto en GitHub</a> ·
+      <a href="https://github.com/alessio034/mitv-releases/releases">Versiones</a>
+    </div>
+    <div>
+      <h4>Créditos</h4>
+      <ul>
+        <li>Canales: <a href="https://github.com/iptv-org/iptv">iptv-org</a>, <a href="https://pluto.tv">Pluto TV</a>; guía: <a href="https://iptv-epg.org">iptv-epg.org</a>.</li>
+        <li>Películas libres: <a href="https://archive.org">Internet Archive</a> y <a href="https://studio.blender.org/films/">Blender Foundation</a> (CC BY); pósters de <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.</li>
+        <li>"Dónde verlo": <a href="https://www.themoviedb.org">TMDB</a> y JustWatch; enlaces: <a href="https://www.wikidata.org">Wikidata</a>.
+          <i>Mi TV usa la API de TMDB pero no está avalada ni certificada por TMDB.</i></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Botones "Copiar"
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    const t = document.getElementById(b.dataset.copy).textContent.trim();
+    try { await navigator.clipboard.writeText('https://' + t); b.textContent = '¡Copiado!'; }
+    catch { b.textContent = 'No se pudo'; }
+    setTimeout(() => (b.textContent = 'Copiar'), 1800);
+  }));
+
+  // Última versión desde GitHub (si falla, la página queda con el texto fijo)
+  fetch('https://api.github.com/repos/alessio034/mitv-releases/releases/latest')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(rel => {
+      const fecha = new Date(rel.published_at).toLocaleDateString('es', { day: 'numeric', month: 'long', year: 'numeric' });
+      const apk = (rel.assets || []).find(a => a.name === 'mitv.apk') || (rel.assets || []).find(a => a.name.endsWith('.apk'));
+      const mb = apk ? ' · APK de ' + (apk.size / 1048576).toFixed(1).replace('.', ',') + ' MB' : '';
+      document.getElementById('ver').innerHTML =
+        'Versión <strong></strong> · ' + fecha + mb + ' · Android 6.0 o superior';
+      document.querySelector('#ver strong').textContent = rel.tag_name.replace(/^v/, '');
+      document.getElementById('newsTag').textContent = rel.tag_name;
+      document.getElementById('newsDate').textContent = fecha;
+      document.getElementById('newsBody').textContent = (rel.body || '').trim() || 'Mejoras y correcciones.';
+    })
+    .catch(() => { document.getElementById('novedades').style.display = 'none'; });
+</script>
+</body>
+</html>
